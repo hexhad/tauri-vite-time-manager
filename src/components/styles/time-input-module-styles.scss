@@ -1,0 +1,25 @@
+@use "../../styles/fonts.scss";
+
+.time-input-module-container {
+  display: "inline-block";
+  position: "relative";
+  border-width: 0px;
+
+  .time-input-module {
+    font-family: "FiraCode-Regular";
+    height: 36px;
+    padding-inline: 10px;
+    border-radius: 4px;
+    border-width: 0px;
+    margin: 0.5rem 0;
+
+    &:focus {
+      border-width: 0rem;
+      outline: none;
+    }
+    &:active {
+      border-width: 0px;
+    }
+
+  }
+}

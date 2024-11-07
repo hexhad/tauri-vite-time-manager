@@ -1,0 +1,27 @@
+@use '../../styles/fonts.scss';
+
+.button-container {
+    width: 70px;
+    height: 36px;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font-family: 'FiraCode-Regular';
+    background-color: #009afb; // Example color, change as needed
+    color: #fff; // Text color
+    border: none; // Removes default border
+    border-radius: 4px; // Adds slight rounding to the corners
+    cursor: pointer; // Changes cursor to pointer when hovering
+    display: flex;
+    justify-content: center; // Centers text horizontally
+    align-items: center; // Centers text vertically
+  
+    &:hover {
+      background-color: #0056b3; // Darker shade on hover
+    }
+  
+    &:active {
+      background-color: #004494; // Even darker when active/clicked
+    }
+
+  }
+  

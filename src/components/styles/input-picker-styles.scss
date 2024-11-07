@@ -1,0 +1,156 @@
+
+// // NumberInput.scss
+// @use 'variables' as *;
+// @use 'sass:map';
+
+// @mixin generate-color-vars {
+//   @each $name, $value in $colors {
+//     --input-#{$name}: #{map.get($value, 'rgb')};
+//   }
+// }
+
+// :root {
+//   @include generate-color-vars;
+// }
+
+// .number-input {
+//   $root: &;
+
+//   &-container {
+//     position: relative;
+//     width: map.get($dimensions, 'input-width');
+//     height: map.get($dimensions, 'input-height');
+//   }
+
+//   &-field {
+//     width: 100%;
+//     height: 100%;
+//     padding: 0.5rem;
+//     text-align: center;
+//     font-size: 1rem;
+//     border: 1px solid rgb(var(--input-border));
+//     border-radius: map.get($dimensions, 'border-radius');
+//     color: rgb(var(--input-text));
+//     background-color: white;
+//     transition: all map.get($dimensions, 'transition-duration') ease-in-out;
+
+//     // Remove spinner buttons
+//     &::-webkit-inner-spin-button,
+//     &::-webkit-outer-spin-button {
+//       -webkit-appearance: none;
+//       margin: 0;
+//     }
+
+//     // Firefox
+//     &[type='number'] {
+//       -moz-appearance: textfield;
+//     }
+
+//     &::placeholder {
+//       color: rgb(var(--input-placeholder));
+//     }
+
+//     &:focus {
+//       outline: none;
+//       border-color: rgb(var(--input-primary));
+//       box-shadow: 0 0 0 2px rgba(var(--input-primary), 0.2);
+//     }
+
+//     &:hover:not(:disabled) {
+//       border-color: rgba(var(--input-border), 0.8);
+//     }
+
+//     &:disabled {
+//       background-color: rgb(var(--input-disabled));
+//       cursor: not-allowed;
+//     }
+//   }
+
+//   &-error {
+//     border-color: rgb(var(--input-error)) !important;
+
+//     &:focus {
+//       box-shadow: 0 0 0 2px rgba(var(--input-error), 0.2);
+//     }
+//   }
+
+//   @media (prefers-color-scheme: dark) {
+//     --input-text: 249, 250, 251;
+//     --input-border: 55, 65, 81;
+//     --input-placeholder: 107, 114, 128;
+//     --input-disabled: 55, 65, 81;
+
+//     #{$root}-field {
+//       background-color: rgb(31, 41, 55);
+//       border-color: rgb(var(--input-border));
+//       color: rgb(var(--input-text));
+
+//       &::placeholder {
+//         color: rgb(var(--input-placeholder));
+//       }
+
+//       &:disabled {
+//         background-color: rgb(var(--input-disabled));
+//       }
+
+//       &:hover:not(:disabled) {
+//         border-color: rgba(var(--input-border), 0.9);
+//       }
+//     }
+//   }
+// }
+
+// // Responsive styles using modern breakpoint mixing
+// @mixin responsive($breakpoint) {
+//   @media screen and (max-width: $breakpoint) {
+//     @content;
+//   }
+// }
+
+// @include responsive(640px) {
+//   .number-input {
+//     &-container {
+//       width: 50px;
+//       height: 36px;
+//     }
+
+//     &-field {
+//       font-size: 0.875rem;
+//       padding: 0.375rem;
+//     }
+//   }
+// }
+
+// // Theme variations using modern Sass
+// @mixin create-theme($name, $primary-color-rgb) {
+//   .number-input-theme-#{$name} {
+//     --input-primary: #{$primary-color-rgb};
+//   }
+// }
+
+// @include create-theme('primary', '14, 165, 233');    // cyan-600
+// @include create-theme('secondary', '168, 85, 247');  // purple-600
+// @include create-theme('success', '34, 197, 94');     // green-600
+// @include create-theme('warning', '234, 179, 8');     // yellow-600
+@use '../../styles/fonts.scss';
+
+.number-input-container {
+  width: 80px;
+  height: 36px;
+  font-family: 'FiraCode-Regular';
+
+  border-radius: 4px; // Adds slight rounding to the corners
+  cursor: pointer; // Changes cursor to pointer when hovering
+  display: flex;
+  justify-content: center; // Centers text horizontally
+  align-items: center; // Centers text vertically
+
+  &:hover {
+
+  }
+
+  &:active {
+    background-color: #004494; // Even darker when active/clicked
+  }
+
+}

@@ -1,0 +1,39 @@
+// _variables.scss
+@use 'sass:color';
+@use 'sass:map';
+
+// Color palette using modern Sass maps
+$colors: (
+  'primary': (
+    'rgb': '59, 130, 246',
+    'hex': #3b82f6
+  ),
+  'border': (
+    'rgb': '229, 231, 235',
+    'hex': #e5e7eb
+  ),
+  'placeholder': (
+    'rgb': '156, 163, 175',
+    'hex': #9ca3af
+  ),
+  'text': (
+    'rgb': '31, 41, 55',
+    'hex': #1f2937
+  ),
+  'error': (
+    'rgb': '239, 68, 68',
+    'hex': #ef4444
+  ),
+  'disabled': (
+    'rgb': '243, 244, 246',
+    'hex': #f3f4f6
+  )
+);
+
+// Dimensions
+$dimensions: (
+  'input-width': 60px,
+  'input-height': 40px,
+  'border-radius': 6px,
+  'transition-duration': 0.2s
+);

@@ -1,0 +1,166 @@
+// _variables.scss
+
+// Colors as a Sass map
+$colors: (
+  primary: (
+    light: #60a5fa,    // blue-400
+    base: #3b82f6,     // blue-500
+    dark: #2563eb      // blue-600
+  ),
+  gray: (
+    50: #f9fafb,
+    100: #f3f4f6,
+    200: #e5e7eb,
+    300: #d1d5db,
+    400: #9ca3af,
+    500: #6b7280,
+    600: #4b5563,
+    700: #374151,
+    800: #1f2937,
+    900: #111827
+  ),
+  error: (
+    light: #f87171,   // red-400
+    base: #ef4444,    // red-500
+    dark: #dc2626     // red-600
+  )
+);
+
+// Base measurements
+$sizes: (
+  input: (
+    width: 60px,
+    height: 40px,
+    mobile-width: 50px,
+    mobile-height: 36px
+  ),
+  spacing: (
+    xs: 4px,
+    sm: 8px,
+    md: 12px,
+    lg: 16px,
+    xl: 24px
+  ),
+  border-radius: (
+    sm: 4px,
+    base: 6px,
+    lg: 8px
+  ),
+  font: (
+    sm: 0.875rem,
+    base: 1rem,
+    lg: 1.125rem
+  )
+);
+
+// Animation timings
+$transitions: (
+  fast: 0.15s,
+  base: 0.2s,
+  slow: 0.3s
+);
+
+// Breakpoints
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px
+);
+
+// Z-index values
+$z-index: (
+  base: 1,
+  dropdown: 1000,
+  sticky: 1020,
+  fixed: 1030,
+  modal: 1040,
+  popover: 1050,
+  tooltip: 1060
+);
+
+// Shadows
+$shadows: (
+  sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+  base: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+  md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+  lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'
+);
+
+// Functions to access map values
+@function color($key, $shade: 'base') {
+  @if map-has-key($colors, $key) {
+    $color-map: map-get($colors, $key);
+    @if map-has-key($color-map, $shade) {
+      @return map-get($color-map, $shade);
+    }
+    @error 'Shade `#{$shade}` not found in color `#{$key}`.';
+  }
+  @error 'Color `#{$key}` not found.';
+}
+
+@function size($category, $key) {
+  @if map-has-key($sizes, $category) {
+    $category-map: map-get($sizes, $category);
+    @if map-has-key($category-map, $key) {
+      @return map-get($category-map, $key);
+    }
+    @error 'Size `#{$key}` not found in category `#{$category}`.';
+  }
+  @error 'Category `#{$category}` not found.';
+}
+
+// Mixins for common patterns
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @error 'Breakpoint `#{$breakpoint}` not found.';
+  }
+}
+
+@mixin theme($color-map) {
+  @each $name, $value in $color-map {
+    --#{$name}: #{$value};
+  }
+}
+
+// Export variables as CSS custom properties
+:root {
+  // Colors
+  --color-primary: #{color(primary)};
+  --color-primary-light: #{color(primary, light)};
+  --color-primary-dark: #{color(primary, dark)};
+  
+  // Gray scale
+  @each $key, $value in map-get($colors, gray) {
+    --gray-#{$key}: #{$value};
+  }
+  
+  // Error colors
+  --color-error: #{color(error)};
+  --color-error-light: #{color(error, light)};
+  --color-error-dark: #{color(error, dark)};
+  
+  // Spacing
+  @each $key, $value in map-get($sizes, spacing) {
+    --spacing-#{$key}: #{$value};
+  }
+  
+  // Border radius
+  @each $key, $value in map-get($sizes, border-radius) {
+    --radius-#{$key}: #{$value};
+  }
+  
+  // Transitions
+  @each $key, $value in $transitions {
+    --transition-#{$key}: #{$value};
+  }
+  
+  // Shadows
+  @each $key, $value in $shadows {
+    --shadow-#{$key}: #{$value};
+  }
+}

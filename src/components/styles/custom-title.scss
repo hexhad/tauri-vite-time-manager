@@ -1,0 +1,32 @@
+.titlebar {
+  height: 25px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.1em 0.5em;
+  background-color: rgb(30, 30, 30);
+  .titlebar-button-minimize {
+    border-width: 0px;
+    border-radius: 100px;
+    display: flex;
+    background-color: #ffbd44;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 13px;
+    height: 13px;
+  }
+
+  .titlebar-button-close {
+    border-width: 0px;
+    border-radius: 100px;
+    display: flex;
+    background-color: #ff605c;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 13px;
+    height: 13px;
+  }
+}

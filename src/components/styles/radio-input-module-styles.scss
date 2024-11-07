@@ -1,0 +1,127 @@
+@use '../../styles/fonts.scss';
+
+.radio-container {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin: 4px;
+    cursor: pointer;
+  
+    &.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .radio-label{
+        font-family: 'FiraCode-Regular';
+    }
+  }
+  
+  .radio-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+
+    
+  
+    // Size variations
+    &.small + .radio-label .radio-button {
+      width: 10px;
+      height: 10px;
+      font-family: 'FiraCode-Regular';
+    }
+  
+    &.medium + .radio-label .radio-button {
+      width: 20px;
+      height: 20px;
+    }
+  
+    &.large + .radio-label .radio-button {
+      width: 24px;
+      height: 24px;
+    }
+  
+    // Color variations
+    &.primary:checked + .radio-label .radio-button {
+      border-color: #009afb;
+      &:after {
+        background-color: #009afb;
+      }
+    }
+  
+    &.secondary:checked + .radio-label .radio-button {
+      border-color: #6b7280;
+      &:after {
+        background-color: #6b7280;
+      }
+    }
+  
+    &.success:checked + .radio-label .radio-button {
+      border-color: #10b981;
+      &:after {
+        background-color: #10b981;
+      }
+    }
+  
+    &.danger:checked + .radio-label .radio-button {
+      border-color: #ef4444;
+      &:after {
+        background-color: #ef4444;
+      }
+    }
+  
+    &:focus + .radio-label .radio-button {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+  }
+  
+  .radio-label {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    // padding: 2px;
+    cursor: pointer;
+  
+    &.small {
+      font-size: 12px;
+    }
+  
+    &.medium {
+      font-size: 16px;
+    }
+  
+    &.large {
+      font-size: 18px;
+    }
+  }
+  
+  .radio-button {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+  
+    .radio-input:checked + .radio-label & {
+      &:after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  
+    .radio-container:hover & {
+      border-color: #9ca3af;
+    }
+  }

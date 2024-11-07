@@ -1,0 +1,220 @@
+@use "sass:color";
+@use "sass:math";
+@use "sass:map";
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+// Variables - Using module system
+body {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.main-app-container {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.middle-container {
+  padding: 8px;
+}
+
+// Create a configuration module
+$config: (
+  // "fonts": (
+  //   "stack": (Inter, Avenir, Helvetica, Arial, sans-serif),
+  //   "size": 16px,
+  //   "line-height": 1.5,
+  //   "weight": 400
+  // ),
+  "colors":
+    (
+      "primary": rgb(75, 75, 75),
+      "text-dark": #0f0f0f,
+      "text-light": #f6f6f6,
+      "bg-light": #f7f7f7,
+      "bg-dark": #2f2f2f,
+      "input-light": #ffffff,
+      "input-dark": #0f0f0f98,
+    ),
+  // "spacing": (
+  //   "transition": 0.25s,
+  //   "border-radius": 3px
+  // )
+);
+.input-row {
+  display: flex;
+  gap: 1rem; // Adds spacing between the inputs; adjust as needed
+  align-items: center; // Aligns items vertically in the center
+}
+.input-wrapper {
+  background-color: rgb(67, 67, 67);
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+// // Functions using module system
+@function get-color($key) {
+  @return map.get(map.get($config, "colors"), $key);
+}
+
+// @function get-font($key) {
+//   @return map.get(map.get($config, "fonts"), $key);
+// }
+
+// @function get-spacing($key) {
+//   @return map.get(map.get($config, "spacing"), $key);
+// }
+
+// @function color-alpha($color, $alpha) {
+//   @return color.change($color, $alpha: $alpha);
+// }
+
+// // Mixins
+// @mixin hover-effect {
+//   transition: all get-spacing("transition") ease-in-out;
+//   &:hover {
+//     transform: translateY(-1px);
+//     box-shadow: 0 4px 8px color-alpha(#000000, 0.15);
+//   }
+// }
+
+// @mixin focus-outline {
+//   &:focus-visible {
+//     outline: 2px solid get-color("primary");
+//     outline-offset: 2px;
+//   }
+// }
+
+// .header{
+//   font-family: 'FiraCode-Regular';
+// }
+
+// // Root styles
+// :root {
+//   font-family: get-font("stack");
+//   font-size: get-font("size");
+//   line-height: get-font("line-height");
+//   font-weight: get-font("weight");
+//   color: get-color("text-dark");
+//   background-color: get-color("bg-light");
+
+//   font-synthesis: none;
+//   text-rendering: optimizeLegibility;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   -webkit-text-size-adjust: 100%;
+// }
+
+// // Form elements
+// %form-element-base {
+//   border-radius: get-spacing("border-radius");
+//   border: 1px solid transparent;
+//   padding: 0.6em 1.2em;
+//   font-size: 1em;
+//   font-weight: 500;
+//   font-family: inherit;
+//   transition: all get-spacing("transition");
+//   // box-shadow: 0 2px 2px color-alpha(#000000, 0.2);
+
+//   @include focus-outline;
+// }
+
+// input, button {
+//   @extend %form-element-base;
+//   color: get-color("text-dark");
+//   background-color: get-color("input-light");
+
+//   &::placeholder {
+//     color: color-alpha(get-color("text-dark"), 0.6);
+//   }
+// }
+
+// button {
+//   cursor: pointer;
+//   @include hover-effect;
+
+//   &:hover {
+//     border-color: get-color("primary");
+//   }
+
+//   &:active {
+//     border-color: get-color("primary");
+//     background-color: color.scale(get-color("input-light"), $lightness: -10%);
+//     transform: translateY(1px);
+//   }
+
+//   &:disabled {
+//     opacity: 0.6;
+//     cursor: not-allowed;
+//     &:hover {
+//       transform: none;
+//       box-shadow: 0 2px 2px color-alpha(#000000, 0.2);
+//     }
+//   }
+// }
+
+// // Specific elements
+// #greet-input {
+//   margin-right: math.div(1rem, 2);
+
+//   &:focus {
+//     border-color: get-color("primary");
+//   }
+// }
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: get-color("text-light");
+    background-color: get-color("bg-dark");
+  }
+
+  a {
+    color: color.scale(get-color("primary"), $lightness: 20%);
+
+    &:hover {
+      color: #24c8db;
+    }
+  }
+
+  input,
+  button {
+    color: get-color("text-light");
+    background-color: get-color("input-dark");
+
+    &::placeholder {
+      color: color-alpha(get-color("text-light"), 0.6);
+    }
+  }
+
+  button {
+    &:active {
+      background-color: color.scale(get-color("input-dark"), $lightness: -15%);
+    }
+
+    &:hover {
+      border-color: color.scale(get-color("primary"), $lightness: 10%);
+    }
+  }
+}
+
+// // Responsive design
+// @media (max-width: 768px) {
+//   :root {
+//     font-size: 14px;
+//   }
+
+//   // input, button {
+//   //   width: 100%;
+//   //   margin: math.div(1rem, 2) 0;
+//   // }
+
+//   #greet-input {
+//     margin-right: 0;
+//   }
+// }
